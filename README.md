@@ -2,9 +2,9 @@
 
 UltiCal is being developed as a free and open source team and tournament management platform. We are backed by the German Discsport Federation (DFV). Their live version can be found at https://dfv-turniere.de.
 
-# Install
+## Install
 
-## Requirements
+### Requirements
 
 * Java 1.8
 * Maven
@@ -66,7 +66,7 @@ To check the `NOTICE` file manually, run `mvn notice:check`.
 
 Headers for code files are inserted automatically at every build. To manually trigger a header check, run `mvn license:check`, to update the headers run `mvn license:format`.
 
-# Licenses
+## Licenses
 
 This project is published as Free and Open Source Software. The licenses for the different components are as follows:
 
