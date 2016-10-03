@@ -43,6 +43,12 @@ Inside the `web/`directory install dependencies with bower:
 
 Change the document root of your web server to the web directory
 
+## Run with Docker
+
+The file `docker/docker-compose.yml` contains a `docker-compose` configuration _for testing and development purposes_.
+
+For documentation see `docker/README.md`.
+
 ## License management
 
 ### Backend license

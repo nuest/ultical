@@ -1,0 +1,53 @@
+debugMode:
+  enabled: false
+  mailCatcher: team@ultical.de
+server:
+  applicationConnectors:
+    - type: http
+      port: 8765
+  adminConnectors:
+    - type: http
+      port: 8766
+dfvApi: 
+  token: token
+  secret: secret
+  url: https://dfv-mv.de/api
+ 
+database:
+  driverClass: com.mysql.jdbc.Driver
+  url: jdbc:mysql://db/ultical?useSSL=false
+  user: ultical
+  password: ultical
+  
+mail:
+  smtpHost: smtp.example.com
+  smtpPort: 587
+  smtpUser: smtp-user
+  smtpPassword: secret
+  smtpSender: no-reply@example.com
+frontendUrl: http://example.com:1234/front
+corsFilterEnabled: false
+
+jobs:
+  dfvMvSyncEnabled: false
+reCaptcha:
+  url: https://www.google.com/recaptcha/api/siteverify
+  secret: ...
+
+logging:
+  level: INFO
+  appenders:
+    - type: file
+      currentLogFilename: ./logs/ultical.log
+      archive: true
+      archivedLogFilenamePattern: ./logs/ultical-%d.log.gz
+      archivedFileCount: 7
+      threshold: INFO
+      logFormat: '%-5p [%d{ISO8601,CET}] %c{5}:%-15X{remoteIp} %m%n%rEx'
+    - type: file
+      currentLogFilename: ./logs/ultical-err.log
+      archive: true
+      archivedLogFilenamePattern: ./logs/ultical-err-%d.log.gz
+      archivedFileCount: 14
+      threshold: ERROR
+      logFormat: '%-5p [%d{ISO8601,CET}] %c{5}:%-15X{remoteIp} %m%n%rEx'
