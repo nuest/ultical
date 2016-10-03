@@ -83,9 +83,27 @@ import io.dropwizard.util.Duration;
 
 public class Application extends io.dropwizard.Application<UltiCalConfig> {
 
+    public static final int STARTUP_RETRY_PAUSE_SECS = 5;
+    public static final int STARTUP_RETRY_ATTEMTPS = 12;
+
     public static void main(String[] args) throws Exception {
         Application ultiCal = new Application();
-        ultiCal.run(args);
+        
+        int retryCounter = 1;
+        while(retryCounter <= STARTUP_RETRY_ATTEMTPS) {
+            try {
+                ultiCal.run(args);
+                break;
+            }
+            catch(java.net.ConnectException | java.util.concurrent.RejectedExecutionException | org.eclipse.jetty.util.MultiException e) {
+                System.out.println("Error connecting to database, retrying in " + STARTUP_RETRY_PAUSE_SECS + " seconds. " + 
+                    retryCounter + "/" + STARTUP_RETRY_ATTEMTPS + "\n\t" + e.getMessage());
+                Thread.sleep(STARTUP_RETRY_PAUSE_SECS * 1000);
+                retryCounter++;
+            }
+        }
+        
+        System.out.println("Started ultical!");
     }
 
     @Override
